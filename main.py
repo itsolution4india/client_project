@@ -9,8 +9,8 @@ app = FastAPI()
 security = HTTPBasic()
 
 # Hard-coded credentials for demonstration
-VALID_USERNAME = "username"
-VALID_PASSWORD = "password"
+VALID_USERNAME = "itsolutions"
+VALID_PASSWORD = "hello"
 
 # Ensure log directory exists
 LOG_DIR = "request_logs"
@@ -31,7 +31,7 @@ def verify_credentials(credentials: HTTPBasicCredentials = Depends(security)):
 
 @app.get("/")
 @app.post("/")
-async def root(request: Request):
+async def root(request: Request, username: str = Depends(verify_credentials)):
     """Handle both GET and POST requests at the root URL, validate credentials and log the request."""
     try:
         # Get request method
