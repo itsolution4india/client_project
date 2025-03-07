@@ -31,7 +31,7 @@ def verify_credentials(credentials: HTTPBasicCredentials = Depends(security)):
 
 @app.get("/")
 @app.post("/")
-async def root(request: Request, username: str = Depends(verify_credentials)):
+async def root(request: Request):
     """Handle both GET and POST requests at the root URL, validate credentials and log the request."""
     try:
         # Get request method
